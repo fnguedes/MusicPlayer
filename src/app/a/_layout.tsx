@@ -1,4 +1,4 @@
-import {  ImageBackground, SafeAreaView, StatusBar, Text } from 'react-native'
+import {  Image, ImageBackground, SafeAreaView, StatusBar, Text } from 'react-native'
 import {Slot} from 'expo-router'
 import {Tab} from '@/components/tab'
 import { COLORS } from '@/globalStyles/colors'
@@ -8,9 +8,8 @@ export default function layout() {
    <>
    <StatusBar />
    <ImageBackground source={require('@/assets/background.png')} style={{flex:1, backgroundColor:COLORS.default.backgroundView}}>
-
+    <Image source={require('@/assets/logo.png')}/>
    <Slot/>
-   <Tab left="./" right="./a" center="./player"/>
    </ImageBackground> 
    </>
   )

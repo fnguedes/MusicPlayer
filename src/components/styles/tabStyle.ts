@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet } from "react-native";
-import { COLORS } from "@/styles/colors";
+import { COLORS } from "@/globalStyles/colors";
 
 const {width}= Dimensions.get('screen')
 
@@ -8,21 +8,27 @@ export default StyleSheet.create({
       position:'absolute',
       backgroundColor:COLORS.backgroundTab,
       width,
-      height:55,
+      height:53,
       bottom:0,
       flexDirection:'row',
       justifyContent:'space-evenly',
       alignItems:'center'
    },
    centerButton:{
-      width:100,
+      width:width/3,
       height:100,
       borderRadius:100,
-      backgroundColor:COLORS.default.backgroundView,
+      // backgroundColor:COLORS.default.backgroundView,
       alignSelf:'flex-end',
       justifyContent:'center',
       alignItems:'center',
       
+   },
+   sideButtonsContainer:{
+      width:width/3,
+      height:'100%',
+      justifyContent:'center',
+      alignItems:'center',
    },
    button:{
       width: 70,

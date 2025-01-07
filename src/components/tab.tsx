@@ -1,11 +1,18 @@
-import { View, Text, Image, TouchableOpacity,Animated, Easing } from 'react-native'
+import { View, Text, Image, TouchableOpacity,Animated, Easing, ImageBackground } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import style from '@/components/tabStyle'
+import style from '@/components/styles/tabStyle'
+import { Link } from 'expo-router'
 
-export default function tab() {
+interface Navegacao {
+   left: string;
+   right: string;
+   center: string;
+}
+
+export const Tab:React.FC<Navegacao> = ({left, right, center}) => {
 
    const [rotateAnimation,setRotate] = useState(new Animated.Value(0))
-
+   
    function musicPlaying (){
       Animated.loop(
       Animated.timing(
@@ -29,22 +36,28 @@ export default function tab() {
 	})
    
   return (
-    <View style={style.container}>
-      
-      <TouchableOpacity activeOpacity={0.5}>
-         <Image source={require('@/assets/library.png')} style={style.libraryImage}/>
-      </TouchableOpacity>
+      <ImageBackground source={require('@/assets/LightExclude.png')} style={style.container}>
+
+      <Link href={left} asChild>
+         <TouchableOpacity activeOpacity={0.5} style={style.sideButtonsContainer}>
+            <Image source={require('@/assets/library.png')} style={style.libraryImage}/>
+         </TouchableOpacity>
+      </Link>
       
       <View style={style.centerButton}>
-         <TouchableOpacity style={style.button} activeOpacity={0.5}>
+         <Link href={center} asChild>
+            <TouchableOpacity style={style.button} activeOpacity={0.5}>
                <Animated.Image source={require('@/assets/logo.png')} style={[style.musicImage,{transform:[{rotate}]}]}/>
-         </TouchableOpacity>
+            </TouchableOpacity>
+         </Link>
       </View>
 
-      <TouchableOpacity activeOpacity={0.5}>
-         <Image source={require('@/assets/cards.png')} style={style.cardsImage}/>
-      </TouchableOpacity>
+      <Link href={right} asChild>
+         <TouchableOpacity activeOpacity={0.5} style={style.sideButtonsContainer}>
+            <Image source={require('@/assets/cards.png')} style={style.cardsImage}/>
+         </TouchableOpacity>
+      </Link>
      
-    </View>
+      </ImageBackground>
   )
 }
